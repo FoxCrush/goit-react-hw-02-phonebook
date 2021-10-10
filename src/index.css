@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.phonebookSection {
+  padding: 20px;
+  max-width: 40vw;
+}
+
+.createContactContainer {
+  padding: 10px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.addContactButton {
+  margin-top: 20px;
+  width: 200px;
+}
