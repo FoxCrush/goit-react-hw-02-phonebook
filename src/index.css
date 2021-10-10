@@ -28,3 +28,7 @@ code {
   margin-top: 20px;
   width: 200px;
 }
+
+.clientInputTextfield {
+  width: 50%;
+}
