@@ -10,7 +10,15 @@ class App extends Component {
     filter: "",
   };
 
+  sameContactNameWarning = (name) => {
+    alert(`${name} already exists`);
+  };
+
   createContact = (name = "no name", number = "no number") => {
+    if (this.state.contacts.some((contact) => contact.name === name)) {
+      this.sameContactNameWarning(name);
+      return;
+    }
     const contact = {
       name,
       number,
@@ -32,8 +40,10 @@ class App extends Component {
     );
   };
 
-  deleteContact = () => {
-    this.setState((currState) => ({}));
+  deleteContact = (contactID) => {
+    this.setState((currState) => ({
+      contacts: currState.contacts.filter((contact) => contact.id != contactID),
+    }));
   };
 
   render() {
@@ -48,7 +58,10 @@ class App extends Component {
           filterСondition={filter}
           onFilterInputChange={this.onFilterInputChange}
         />
-        <ContactList contactsToShow={contactsToShow} />
+        <ContactList
+          contactsToShow={contactsToShow}
+          deleteMethod={this.deleteContact}
+        />
       </section>
     );
   }

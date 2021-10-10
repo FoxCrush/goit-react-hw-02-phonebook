@@ -4,7 +4,13 @@ function ClassList(props) {
     <div className="contactListContainer">
       <ul>
         {props.contactsToShow.map(({ id, name, number }) => (
-          <ContactListItem key={id} name={name} number={number} />
+          <ContactListItem
+            id={id}
+            key={id}
+            name={name}
+            number={number}
+            deleteMethod={props.deleteMethod}
+          />
         ))}
       </ul>
     </div>
