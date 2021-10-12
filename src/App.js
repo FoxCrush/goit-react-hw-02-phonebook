@@ -10,6 +10,25 @@ class App extends Component {
     filter: "",
   };
 
+  componentDidMount() {
+    const contactsFromStorage = localStorage.getItem("contacts");
+    const parsedContacts = JSON.parse(contactsFromStorage);
+
+    if (parsedContacts) {
+      console.log(parsedContacts);
+
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    const prevContacts = prevState.contacts;
+    const contacts = this.state.contacts;
+
+    if (prevContacts !== contacts) {
+      localStorage.setItem("contacts", JSON.stringify(contacts));
+    }
+  }
+
   sameContactNameWarning = (name) => {
     alert(`${name} already exists`);
   };
@@ -42,7 +61,9 @@ class App extends Component {
 
   deleteContact = (contactID) => {
     this.setState((currState) => ({
-      contacts: currState.contacts.filter((contact) => contact.id != contactID),
+      contacts: currState.contacts.filter(
+        (contact) => contact.id !== contactID
+      ),
     }));
   };
 
